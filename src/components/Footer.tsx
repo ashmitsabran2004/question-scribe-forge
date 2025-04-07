@@ -1,5 +1,4 @@
-
-import { GitHub, Twitter, Mail } from "lucide-react";
+import { Github, Twitter, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -41,7 +40,7 @@ const Footer = () => {
             <h3 className="font-semibold text-white mb-4">Connect</h3>
             <div className="flex space-x-4">
               <a href="#" className="hover:text-blue-400 transition-colors">
-                <GitHub className="h-5 w-5" />
+                <Github className="h-5 w-5" />
               </a>
               <a href="#" className="hover:text-blue-400 transition-colors">
                 <Twitter className="h-5 w-5" />
