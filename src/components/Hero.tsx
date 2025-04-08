@@ -21,14 +21,15 @@ const Hero = () => {
               Search Questions
             </Button>
           </Link>
-          <Button 
-            size="lg" 
-            variant="outline"
-            className="border-slate-400 text-white hover:text-slate-900 hover:bg-slate-200 px-8 py-2 text-lg"
-            onClick={() => document.getElementById('upload')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Upload Questions
-          </Button>
+          <Link to="/upload">
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="border-slate-400 text-white hover:text-slate-900 hover:bg-slate-200 px-8 py-2 text-lg"
+            >
+              Upload Questions
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

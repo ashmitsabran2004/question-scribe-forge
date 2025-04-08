@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { FileUp, Info } from "lucide-react";
+import { Info } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -48,15 +48,6 @@ const Header = () => {
                   <span>About</span>
                 </Link>
               </li>
-              <li>
-                <Link 
-                  to="/#upload" 
-                  className="flex items-center space-x-1 hover:text-blue-300 transition-colors"
-                >
-                  <FileUp className="h-4 w-4" />
-                  <span>Upload Questions</span>
-                </Link>
-              </li>
             </ul>
           </nav>
         </div>
@@ -73,16 +64,6 @@ const Header = () => {
                 >
                   <Info className="h-4 w-4" />
                   <span>About</span>
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/#upload" 
-                  className="flex items-center space-x-2 hover:text-blue-300 transition-colors py-1"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <FileUp className="h-4 w-4" />
-                  <span>Upload Questions</span>
                 </Link>
               </li>
             </ul>
