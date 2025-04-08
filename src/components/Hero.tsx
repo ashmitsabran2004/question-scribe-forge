@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -12,13 +13,14 @@ const Hero = () => {
           Generate, search, and share multiple-choice and long-answer questions for your educational needs
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
-          <Button 
-            size="lg" 
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2 text-lg"
-            onClick={() => document.getElementById('search')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            Search Questions
-          </Button>
+          <Link to="/search">
+            <Button 
+              size="lg" 
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2 text-lg"
+            >
+              Search Questions
+            </Button>
+          </Link>
           <Button 
             size="lg" 
             variant="outline"
