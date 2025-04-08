@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Search, FileUp, Info } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,8 +12,10 @@ const Header = () => {
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <span className="text-blue-400 text-2xl font-bold">Q</span>
-            <h1 className="text-xl md:text-2xl font-bold">Question Maker</h1>
+            <Link to="/" className="flex items-center space-x-2">
+              <span className="text-blue-400 text-2xl font-bold">Q</span>
+              <h1 className="text-xl md:text-2xl font-bold">Question Maker</h1>
+            </Link>
           </div>
           
           {/* Mobile menu button */}
@@ -37,31 +40,31 @@ const Header = () => {
           <nav className="hidden md:block">
             <ul className="flex space-x-6 items-center">
               <li>
-                <a 
-                  href="#about" 
+                <Link 
+                  to="/#about" 
                   className="flex items-center space-x-1 hover:text-blue-300 transition-colors"
                 >
                   <Info className="h-4 w-4" />
                   <span>About</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#search" 
+                <Link 
+                  to="/search" 
                   className="flex items-center space-x-1 hover:text-blue-300 transition-colors"
                 >
                   <Search className="h-4 w-4" />
                   <span>Search Questions</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#upload" 
+                <Link 
+                  to="/#upload" 
                   className="flex items-center space-x-1 hover:text-blue-300 transition-colors"
                 >
                   <FileUp className="h-4 w-4" />
                   <span>Upload Questions</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -72,34 +75,34 @@ const Header = () => {
           <nav className="mt-4 md:hidden border-t border-slate-700 pt-3 pb-2">
             <ul className="space-y-3">
               <li>
-                <a 
-                  href="#about" 
+                <Link 
+                  to="/#about" 
                   className="flex items-center space-x-2 hover:text-blue-300 transition-colors py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Info className="h-4 w-4" />
                   <span>About</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#search" 
+                <Link 
+                  to="/search" 
                   className="flex items-center space-x-2 hover:text-blue-300 transition-colors py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Search className="h-4 w-4" />
                   <span>Search Questions</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#upload" 
+                <Link 
+                  to="/#upload" 
                   className="flex items-center space-x-2 hover:text-blue-300 transition-colors py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <FileUp className="h-4 w-4" />
                   <span>Upload Questions</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
