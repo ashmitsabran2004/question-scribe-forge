@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "framer-motion";
 // Importing pages
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import AboutPage from "./pages/AboutPage";
 
 // Lazy-loaded pages for better performance
 const SearchPage = lazy(() => import("./pages/SearchPage"));
@@ -43,6 +44,7 @@ const AnimationLayout = () => {
       >
         <Routes location={location}>
           <Route path="/" element={<Index />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route 
             path="/search" 
             element={
@@ -82,4 +84,3 @@ const App = () => (
 );
 
 export default App;
-

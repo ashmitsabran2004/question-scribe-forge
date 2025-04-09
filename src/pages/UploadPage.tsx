@@ -7,9 +7,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/components/ui/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion } from "framer-motion";
-import { FileUp, CheckCircle } from "lucide-react";
+import { FileUp, CheckCircle, Home } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
 
 const UploadPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -99,6 +100,16 @@ const UploadPage = () => {
             <p className="text-slate-600 max-w-2xl mx-auto">
               Share your knowledge with our community by uploading your educational questions
             </p>
+            <Button 
+              variant="outline" 
+              size="sm"
+              className="mt-4 gap-2 border-blue-300 hover:bg-blue-50"
+              asChild
+            >
+              <Link to="/">
+                <Home className="h-4 w-4" /> Home
+              </Link>
+            </Button>
           </motion.div>
           
           <Card className="shadow-lg">

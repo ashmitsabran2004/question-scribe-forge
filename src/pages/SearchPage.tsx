@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
-import { Search, Filter, BookOpen, Tag } from "lucide-react";
+import { Search, Filter, BookOpen, Tag, Home } from "lucide-react";
 import { motion } from "framer-motion";
 import QuestionCard, { Question } from "@/components/QuestionCard";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Link } from "react-router-dom";
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -142,6 +143,16 @@ const SearchPage = () => {
               Discover thousands of educational questions across various subjects. 
               Find exactly what you need with our advanced search filters.
             </p>
+            <Button 
+              variant="outline" 
+              size="sm"
+              className="mt-4 gap-2 border-blue-300 hover:bg-blue-50"
+              asChild
+            >
+              <Link to="/">
+                <Home className="h-4 w-4" /> Home
+              </Link>
+            </Button>
           </motion.div>
 
           <Card className="mb-10">

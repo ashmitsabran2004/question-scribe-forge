@@ -41,7 +41,7 @@ const Header = () => {
             <ul className="flex space-x-6 items-center">
               <li>
                 <Link 
-                  to="/#about" 
+                  to="/about" 
                   className="flex items-center space-x-1 hover:text-blue-300 transition-colors"
                 >
                   <Info className="h-4 w-4" />
@@ -58,7 +58,7 @@ const Header = () => {
             <ul className="space-y-3">
               <li>
                 <Link 
-                  to="/#about" 
+                  to="/about" 
                   className="flex items-center space-x-2 hover:text-blue-300 transition-colors py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
