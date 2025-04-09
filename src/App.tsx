@@ -33,10 +33,13 @@ const AnimationLayout = () => {
     <AnimatePresence mode="wait">
       <motion.div
         key={location.pathname}
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.3 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ 
+          duration: 1.2,  // Updated transition duration to 1.2 seconds
+          ease: "easeInOut"  // Added easeInOut for smoother transition
+        }}
       >
         <Routes location={location}>
           <Route path="/" element={<Index />} />
@@ -79,3 +82,4 @@ const App = () => (
 );
 
 export default App;
+
