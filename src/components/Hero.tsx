@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Loader } from "lucide-react";
+import { Loader, HelpCircle } from "lucide-react";
 
 const Hero = () => {
   const [isLoading, setIsLoading] = useState<{
@@ -27,6 +27,42 @@ const Hero = () => {
     }, 800);
   };
 
+  // Animation for the floating question marks
+  const floatingQuestionMarks = Array.from({ length: 5 }).map((_, i) => {
+    // Randomize animation properties for each question mark
+    const randomX = Math.random() * 100 - 50; // Range: -50 to 50
+    const randomDuration = 15 + Math.random() * 10; // Range: 15-25s
+    const randomScale = 0.5 + Math.random() * 0.8; // Range: 0.5-1.3
+    const randomDelay = Math.random() * 5; // Range: 0-5s
+    
+    return (
+      <motion.div 
+        key={i}
+        className="absolute text-blue-400/30"
+        initial={{ 
+          x: -20, 
+          y: randomX, 
+          opacity: 0,
+          scale: randomScale 
+        }}
+        animate={{ 
+          x: 400, 
+          y: [randomX, randomX + 30, randomX - 30, randomX], 
+          opacity: [0, 1, 1, 0],
+          rotate: [0, 10, -10, 0]
+        }}
+        transition={{ 
+          repeat: Infinity, 
+          duration: randomDuration,
+          delay: randomDelay,
+          ease: "linear"
+        }}
+      >
+        <HelpCircle size={24 + i * 5} />
+      </motion.div>
+    );
+  });
+
   return (
     <motion.div 
       className="bg-gradient-to-br from-slate-800 to-slate-900 text-white py-16 md:py-24"
@@ -40,14 +76,21 @@ const Hero = () => {
         animate={{ y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <motion.h1 
-          className="text-3xl md:text-5xl font-bold mb-6 leading-tight"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7 }}
-        >
-          Create and Find <span className="text-blue-400">Questions</span> on Any Subject
-        </motion.h1>
+        <div className="relative">
+          {/* Floating question mark animations */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {floatingQuestionMarks}
+          </div>
+          
+          <motion.h1 
+            className="text-3xl md:text-5xl font-bold mb-6 leading-tight relative z-10"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.7 }}
+          >
+            Create and Find <span className="text-blue-400">Questions</span> on Any Subject
+          </motion.h1>
+        </div>
         
         <motion.p 
           className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8"
