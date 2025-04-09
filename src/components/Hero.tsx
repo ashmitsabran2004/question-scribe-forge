@@ -28,28 +28,35 @@ const Hero = () => {
   };
 
   // Animation for the floating question marks
-  const floatingQuestionMarks = Array.from({ length: 5 }).map((_, i) => {
-    // Randomize animation properties for each question mark
+  // Increased number of question marks for fuller coverage
+  const floatingQuestionMarks = Array.from({ length: 15 }).map((_, i) => {
+    // Enhanced randomization for better distribution across the entire hero section
     const randomX = Math.random() * 100 - 50; // Range: -50 to 50
-    const randomDuration = 15 + Math.random() * 10; // Range: 15-25s
-    const randomScale = 0.5 + Math.random() * 0.8; // Range: 0.5-1.3
-    const randomDelay = Math.random() * 5; // Range: 0-5s
+    const randomStartY = Math.random() * 200 - 100; // Range: -100 to 100
+    const randomDuration = 15 + Math.random() * 20; // Range: 15-35s for more variation
+    const randomScale = 0.3 + Math.random() * 1.2; // Range: 0.3-1.5 for more size variation
+    const randomDelay = Math.random() * 8; // Range: 0-8s for staggered starts
+    const randomOpacity = 0.1 + Math.random() * 0.3; // Range: 0.1-0.4 for varied visibility
+    
+    // Full width coverage
+    const xDistance = window.innerWidth > 1200 ? 1200 : window.innerWidth;
     
     return (
       <motion.div 
         key={i}
-        className="absolute text-blue-400/30"
+        className="absolute text-blue-400"
+        style={{ opacity: randomOpacity }}
         initial={{ 
-          x: -20, 
-          y: randomX, 
+          x: -50, 
+          y: randomStartY, 
           opacity: 0,
           scale: randomScale 
         }}
         animate={{ 
-          x: 400, 
-          y: [randomX, randomX + 30, randomX - 30, randomX], 
-          opacity: [0, 1, 1, 0],
-          rotate: [0, 10, -10, 0]
+          x: xDistance, 
+          y: [randomStartY, randomStartY + 50, randomStartY - 50, randomStartY], 
+          opacity: [0, randomOpacity, randomOpacity, 0],
+          rotate: [0, 15, -15, 0]
         }}
         transition={{ 
           repeat: Infinity, 
@@ -58,39 +65,37 @@ const Hero = () => {
           ease: "linear"
         }}
       >
-        <HelpCircle size={24 + i * 5} />
+        <HelpCircle size={24 + i * 3} />
       </motion.div>
     );
   });
 
   return (
     <motion.div 
-      className="bg-gradient-to-br from-slate-800 to-slate-900 text-white py-16 md:py-24"
+      className="bg-gradient-to-br from-slate-800 to-slate-900 text-white py-16 md:py-24 relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
+      {/* Question mark animations covering the entire hero section */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+        {floatingQuestionMarks}
+      </div>
+      
       <motion.div 
-        className="container mx-auto px-4 md:px-8 text-center"
+        className="container mx-auto px-4 md:px-8 text-center relative z-10"
         initial={{ y: 20 }}
         animate={{ y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <div className="relative">
-          {/* Floating question mark animations */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {floatingQuestionMarks}
-          </div>
-          
-          <motion.h1 
-            className="text-3xl md:text-5xl font-bold mb-6 leading-tight relative z-10"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-          >
-            Create and Find <span className="text-blue-400">Questions</span> on Any Subject
-          </motion.h1>
-        </div>
+        <motion.h1 
+          className="text-3xl md:text-5xl font-bold mb-6 leading-tight relative z-10"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.7 }}
+        >
+          Create and Find <span className="text-blue-400">Questions</span> on Any Subject
+        </motion.h1>
         
         <motion.p 
           className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8"
