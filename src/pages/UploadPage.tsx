@@ -85,7 +85,7 @@ const UploadPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-slate-100">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#F8F4E1] to-[#e8e4d1]">
       <Header />
       
       <main className="flex-grow py-12 px-4">
@@ -96,14 +96,14 @@ const UploadPage = () => {
           variants={containerVariants}
         >
           <motion.div variants={itemVariants} className="text-center mb-10">
-            <h1 className="text-3xl md:text-4xl font-bold mb-3 text-slate-800">Upload Questions</h1>
-            <p className="text-slate-600 max-w-2xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 text-[#4E1F00]">Upload Questions</h1>
+            <p className="text-[#4E1F00] max-w-2xl mx-auto">
               Share your knowledge with our community by uploading your educational questions
             </p>
             <Button 
               variant="outline" 
               size="sm"
-              className="mt-4 gap-2 border-blue-300 hover:bg-blue-50"
+              className="mt-4 gap-2 border-[#4E1F00] text-[#4E1F00] hover:bg-[#4E1F00] hover:text-[#F8F4E1]"
               asChild
             >
               <Link to="/">
@@ -113,12 +113,12 @@ const UploadPage = () => {
           </motion.div>
           
           <Card className="shadow-lg">
-            <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg">
+            <CardHeader className="bg-gradient-to-r from-[#4E1F00] to-[#2a1100] text-[#F8F4E1] rounded-t-lg">
               <CardTitle className="flex items-center gap-2 text-2xl">
                 <FileUp className="h-5 w-5" /> 
                 Upload Your Questions
               </CardTitle>
-              <CardDescription className="text-blue-100">
+              <CardDescription className="text-[#e8e4d1]">
                 Share questions with others and contribute to our growing database
               </CardDescription>
             </CardHeader>
@@ -130,14 +130,14 @@ const UploadPage = () => {
                   initial="hidden"
                   animate="visible"
                 >
-                  <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
-                  <h2 className="text-xl font-semibold text-green-600">Question Uploaded!</h2>
-                  <p className="text-slate-600 mt-2">Your question has been added to our database</p>
+                  <CheckCircle className="h-16 w-16 text-[#4E1F00] mb-4" />
+                  <h2 className="text-xl font-semibold text-[#4E1F00]">Question Uploaded!</h2>
+                  <p className="text-[#4E1F00] mt-2">Your question has been added to our database</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="topic" className="text-sm font-medium">
+                    <label htmlFor="topic" className="text-sm font-medium text-[#4E1F00]">
                       Topic
                     </label>
                     <Input
@@ -146,19 +146,19 @@ const UploadPage = () => {
                       value={topic}
                       onChange={(e) => setTopic(e.target.value)}
                       required
-                      className="border-slate-300"
+                      className="border-[#4E1F00]"
                     />
                   </motion.div>
                   
                   <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="question-type" className="text-sm font-medium">
+                    <label htmlFor="question-type" className="text-sm font-medium text-[#4E1F00]">
                       Question Type
                     </label>
                     <Select 
                       value={questionType} 
                       onValueChange={setQuestionType}
                     >
-                      <SelectTrigger className="border-slate-300">
+                      <SelectTrigger className="border-[#4E1F00] text-[#4E1F00]">
                         <SelectValue placeholder="Select question type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -171,7 +171,7 @@ const UploadPage = () => {
                   </motion.div>
                   
                   <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="question" className="text-sm font-medium">
+                    <label htmlFor="question" className="text-sm font-medium text-[#4E1F00]">
                       Question
                     </label>
                     <Textarea
@@ -179,7 +179,7 @@ const UploadPage = () => {
                       placeholder="Enter your question here..."
                       value={question}
                       onChange={(e) => setQuestion(e.target.value)}
-                      className="min-h-[120px] border-slate-300"
+                      className="min-h-[120px] border-[#4E1F00]"
                       required
                     />
                   </motion.div>
@@ -187,7 +187,7 @@ const UploadPage = () => {
                   <motion.div variants={itemVariants}>
                     <Button 
                       type="submit"
-                      className="bg-blue-600 hover:bg-blue-700 text-white w-full transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]" 
+                      className="bg-[#4E1F00] hover:bg-[#3a1700] text-[#F8F4E1] w-full transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]" 
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Uploading..." : "Upload Question"}

@@ -72,11 +72,11 @@ const SearchQuestions = () => {
       <div className="container mx-auto max-w-4xl">
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-2xl">
+            <CardTitle className="flex items-center gap-2 text-2xl text-[#4E1F00]">
               <Search className="h-5 w-5" /> 
               Search for Questions
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-[#4E1F00]/70">
               Find questions on any subject or topic you're interested in
             </CardDescription>
           </CardHeader>
@@ -88,11 +88,12 @@ const SearchQuestions = () => {
                   placeholder="Enter topic or keywords..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="flex-1"
+                  className="flex-1 border-[#4E1F00]"
                 />
                 <Button 
                   type="submit" 
                   disabled={isLoading}
+                  className="bg-[#4E1F00] hover:bg-[#3a1700] text-[#F8F4E1]"
                 >
                   {isLoading ? "Searching..." : "Search"}
                 </Button>
@@ -107,7 +108,7 @@ const SearchQuestions = () => {
                   ))}
                 </div>
               ) : searchTerm ? (
-                <p className="text-center py-8 text-muted-foreground">
+                <p className="text-center py-8 text-[#4E1F00]/60">
                   Search for questions to see results here
                 </p>
               ) : null}

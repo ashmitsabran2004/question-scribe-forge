@@ -44,7 +44,7 @@ const Hero = () => {
     return (
       <motion.div 
         key={i}
-        className="absolute text-blue-400"
+        className="absolute text-[#F8F4E1] opacity-20"
         style={{ opacity: randomOpacity }}
         initial={{ 
           x: -50, 
@@ -72,7 +72,7 @@ const Hero = () => {
 
   return (
     <motion.div 
-      className="bg-gradient-to-br from-slate-800 to-slate-900 text-white py-16 md:py-24 relative overflow-hidden"
+      className="bg-gradient-to-br from-[#4E1F00] to-black text-[#F8F4E1] py-16 md:py-24 relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -94,11 +94,11 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7 }}
         >
-          Create and Find <span className="text-blue-400">Questions</span> on Any Subject
+          Create and Find <span className="text-[#F8F4E1]">Questions</span> on Any Subject
         </motion.h1>
         
         <motion.p 
-          className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8"
+          className="text-lg md:text-xl text-[#e8e4d1] max-w-2xl mx-auto mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.7 }}
@@ -114,7 +114,7 @@ const Hero = () => {
         >
           <Button 
             size="lg" 
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2 text-lg"
+            className="bg-[#4E1F00] border border-[#F8F4E1] hover:bg-[#3a1700] text-[#F8F4E1] px-8 py-2 text-lg"
             onClick={() => handleNavigation("/search", "search")}
             disabled={isLoading.search}
           >
@@ -128,7 +128,7 @@ const Hero = () => {
           <Button 
             size="lg" 
             variant="outline"
-            className="border-slate-400 text-white hover:text-slate-900 hover:bg-slate-200 px-8 py-2 text-lg"
+            className="border-[#F8F4E1] text-[#F8F4E1] hover:text-[#4E1F00] hover:bg-[#F8F4E1] px-8 py-2 text-lg"
             onClick={() => handleNavigation("/upload", "upload")}
             disabled={isLoading.upload}
           >
