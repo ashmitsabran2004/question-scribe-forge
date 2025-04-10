@@ -2,10 +2,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Info, Home } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  // Don't show Home button on the main page
+  const showHomeButton = location.pathname !== "/";
 
   return (
     <header className="bg-slate-800 text-white py-4 px-4 md:px-8 shadow-md">
@@ -39,15 +43,17 @@ const Header = () => {
           {/* Desktop navigation */}
           <nav className="hidden md:block">
             <ul className="flex space-x-6 items-center">
-              <li>
-                <Link 
-                  to="/" 
-                  className="flex items-center space-x-1 hover:text-blue-300 transition-colors"
-                >
-                  <Home className="h-4 w-4" />
-                  <span>Home</span>
-                </Link>
-              </li>
+              {showHomeButton && (
+                <li>
+                  <Link 
+                    to="/" 
+                    className="flex items-center space-x-1 hover:text-blue-300 transition-colors"
+                  >
+                    <Home className="h-4 w-4" />
+                    <span>Home</span>
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link 
                   to="/about" 
@@ -65,16 +71,18 @@ const Header = () => {
         {isMenuOpen && (
           <nav className="mt-4 md:hidden border-t border-slate-700 pt-3 pb-2">
             <ul className="space-y-3">
-              <li>
-                <Link 
-                  to="/" 
-                  className="flex items-center space-x-2 hover:text-blue-300 transition-colors py-1"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Home className="h-4 w-4" />
-                  <span>Home</span>
-                </Link>
-              </li>
+              {showHomeButton && (
+                <li>
+                  <Link 
+                    to="/" 
+                    className="flex items-center space-x-2 hover:text-blue-300 transition-colors py-1"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <Home className="h-4 w-4" />
+                    <span>Home</span>
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link 
                   to="/about" 
