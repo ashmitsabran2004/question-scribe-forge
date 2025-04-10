@@ -12,7 +12,8 @@ const Header = () => {
   const showHomeButton = location.pathname !== "/";
 
   return (
-    <header className="bg-white/10 backdrop-blur-md text-[#F8F4E1] py-4 px-4 md:px-8 shadow-md rounded-xl border border-white/20">
+    <header className="bg-[#000000]/20 backdrop-blur-md text-[#F8F4E1] py-4 px-4 md:px-8 shadow-md rounded-b-xl border-b border-white/10">
+
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
