@@ -114,7 +114,7 @@ const Hero = () => {
         >
           <Button 
             size="lg" 
-            className="bg-[#4E1F00] border border-[#F8F4E1] hover:bg-[#3a1700] text-[#F8F4E1] px-8 py-2 text-lg"
+            className="bg-[#4E1F00] border border-[#F8F4E1] text-[#F8F4E1] px-8 py-2 text-lg hover:bg-[#683711]"
             onClick={() => handleNavigation("/search", "search")}
             disabled={isLoading.search}
           >
@@ -128,7 +128,7 @@ const Hero = () => {
           <Button 
             size="lg" 
             variant="outline"
-            className="border-[#F8F4E1] text-[#F8F4E1] hover:text-[#4E1F00] hover:bg-[#F8F4E1] px-8 py-2 text-lg"
+            className="border-[#F8F4E1] text-[#4E1F00] bg-[#F8F4E1] hover:bg-[#e8e4d1] px-8 py-2 text-lg"
             onClick={() => handleNavigation("/upload", "upload")}
             disabled={isLoading.upload}
           >
