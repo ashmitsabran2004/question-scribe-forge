@@ -11,14 +11,14 @@ const Index = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3
+        staggerChildren: 0.4
       }
     }
   };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+    show: { opacity: 1, y: 0, transition: { duration: 1 } }
   };
 
   return (
@@ -34,7 +34,7 @@ const Index = () => {
       <motion.div variants={item}>
         <Hero />
       </motion.div>
-      <motion.div variants={item}>
+      <motion.div variants={item} className="flex-grow">
         <About />
       </motion.div>
       <motion.div variants={item}>
