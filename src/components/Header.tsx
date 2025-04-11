@@ -12,13 +12,14 @@ const Header = () => {
   const showHomeButton = location.pathname !== "/";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 py-4 px-4 md:px-8">
+<header className="bg-[#260F00] text-[#F8F4E1] py-4 px-4 md:px-8 shadow-md">
+
       <div className="container mx-auto">
-        <div className="flex justify-between items-center backdrop-blur-md bg-white/10 rounded-lg px-4 py-2 border border-white/20 shadow-sm">
+        <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Link to="/" className="flex items-center space-x-2">
-              <span className="text-[#F8F4E1] text-2xl font-bold drop-shadow-md">Q</span>
-              <h1 className="text-xl md:text-2xl font-bold text-[#F8F4E1] drop-shadow-md">Question Maker</h1>
+              <span className="text-[#F8F4E1] text-2xl font-bold">Q</span>
+              <h1 className="text-xl md:text-2xl font-bold">Question Maker</h1>
             </Link>
           </div>
           
@@ -28,7 +29,7 @@ const Header = () => {
               variant="ghost" 
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-[#F8F4E1] hover:bg-white/20"
+              className="text-[#F8F4E1] hover:bg-[#3a1700]"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 {isMenuOpen ? (
@@ -47,7 +48,7 @@ const Header = () => {
                 <li>
                   <Link 
                     to="/" 
-                    className="flex items-center space-x-1 text-[#F8F4E1] hover:text-white transition-colors drop-shadow-md"
+                    className="flex items-center space-x-1 hover:text-[#e8e4d1] transition-colors"
                   >
                     <Home className="h-4 w-4" />
                     <span>Home</span>
@@ -57,7 +58,7 @@ const Header = () => {
               <li>
                 <Link 
                   to="/about" 
-                  className="flex items-center space-x-1 text-[#F8F4E1] hover:text-white transition-colors drop-shadow-md"
+                  className="flex items-center space-x-1 hover:text-[#e8e4d1] transition-colors"
                 >
                   <Info className="h-4 w-4" />
                   <span>About</span>
@@ -69,13 +70,13 @@ const Header = () => {
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <nav className="mt-2 md:hidden backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-4 shadow-sm">
+          <nav className="mt-4 md:hidden border-t border-[#683711] pt-3 pb-2">
             <ul className="space-y-3">
               {showHomeButton && (
                 <li>
                   <Link 
                     to="/" 
-                    className="flex items-center space-x-2 text-[#F8F4E1] hover:text-white transition-colors py-1"
+                    className="flex items-center space-x-2 hover:text-[#e8e4d1] transition-colors py-1"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <Home className="h-4 w-4" />
@@ -86,7 +87,7 @@ const Header = () => {
               <li>
                 <Link 
                   to="/about" 
-                  className="flex items-center space-x-2 text-[#F8F4E1] hover:text-white transition-colors py-1"
+                  className="flex items-center space-x-2 hover:text-[#e8e4d1] transition-colors py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Info className="h-4 w-4" />

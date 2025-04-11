@@ -31,7 +31,7 @@ const Index = () => {
       <motion.div variants={item}>
         <Header />
       </motion.div>
-      <motion.div variants={item} className="mt-24">
+      <motion.div variants={item}>
         <Hero />
       </motion.div>
       <motion.div variants={item}>
