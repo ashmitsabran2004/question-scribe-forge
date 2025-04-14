@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Questions - Question Maker</title>
+  <meta name="description" content="Search for educational questions across various subjects and topics." />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4E1F00',
+            secondary: '#F8F4E1',
+            accent: '#683711'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Toast CSS -->
+  <link rel="stylesheet" href="css/toast.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header/Navigation -->
+  <header id="header" class="fixed w-full z-50 backdrop-blur-md bg-white/60">
+    <div class="container mx-auto">
+      <div class="flex justify-between items-center py-4 px-4 md:px-8">
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="flex items-center space-x-2">
+            <span class="text-[#4E1F00] text-2xl font-bold">Q</span>
+            <h1 class="text-xl md:text-2xl font-bold text-[#4E1F00]">Question Maker</h1>
+          </a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-[#4E1F00] hover:bg-[#3a1700]/10 p-2 rounded">
+            <i class="fas fa-bars w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Desktop navigation -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-6 items-center">
+            <li>
+              <a href="index.html" class="flex items-center space-x-1 hover:text-[#683711] transition-colors text-[#4E1F00]">
+                <i class="fas fa-home h-4 w-4"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="flex items-center space-x-1 hover:text-[#683711] transition-colors text-[#4E1F00]">
+                <i class="fas fa-info-circle h-4 w-4"></i>
+                <span>About</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-[#683711] pt-3 pb-2 px-4">
+        <ul class="space-y-3">
+          <li>
+            <a href="index.html" class="flex items-center space-x-2 hover:text-[#683711] transition-colors py-1 text-[#4E1F00]">
+              <i class="fas fa-home h-4 w-4"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="flex items-center space-x-2 hover:text-[#683711] transition-colors py-1 text-[#4E1F00]">
+              <i class="fas fa-info-circle h-4 w-4"></i>
+              <span>About</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow pt-24 pb-12">
+    <section id="search" class="py-12 px-4">
+      <div class="container mx-auto max-w-4xl">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="p-6 border-b">
+            <div class="flex items-center gap-2 text-2xl text-[#4E1F00]">
+              <i class="fas fa-search h-5 w-5"></i> 
+              <h2>Search for Questions</h2>
+            </div>
+            <p class="text-[#4E1F00]/70 mt-1">
+              Find questions on any subject or topic you're interested in
+            </p>
+          </div>
+          <div class="p-6">
+            <form id="search-form" class="mb-6 space-y-4">
+              <div class="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Enter topic or keywords..."
+                  class="flex-1 border-[#4E1F00] border rounded-md px-4 py-2"
+                />
+                <button 
+                  type="submit" 
+                  id="search-btn"
+                  class="bg-[#4E1F00] hover:bg-[#3a1700] text-[#F8F4E1] px-4 py-2 rounded-md"
+                >
+                  Search
+                </button>
+              </div>
+            </form>
+
+            <div id="results-container" class="space-y-2">
+              <p class="text-center py-8 text-[#4E1F00]/60">
+                Search for questions to see results here
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast Notifications -->
+  <div id="toast-container" class="fixed top-4 right-4 z-50"></div>
+
+  <!-- Footer -->
+  <footer class="bg-[#4E1F00] text-[#F8F4E1]">
+    <div class="container mx-auto py-8 px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <div class="flex items-center space-x-2 mb-3">
+            <span class="text-[#F8F4E1] text-xl font-bold">Q</span>
+            <h2 class="text-xl text-[#F8F4E1] font-semibold">Question Maker</h2>
+          </div>
+          <p class="text-sm">
+            Create, search, and share educational questions for any subject or topic.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-[#F8F4E1] mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#about" class="text-sm hover:text-[#e8e4d1] transition-colors">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="search.html" class="text-sm hover:text-[#e8e4d1] transition-colors">
+                Search Questions
+              </a>
+            </li>
+            <li>
+              <a href="upload.html" class="text-sm hover:text-[#e8e4d1] transition-colors">
+                Upload Questions
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-[#F8F4E1] mb-4">Connect</h3>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-[#e8e4d1] transition-colors">
+              <i class="fab fa-github h-5 w-5"></i>
+            </a>
+            <a href="#" class="hover:text-[#e8e4d1] transition-colors">
+              <i class="fab fa-twitter h-5 w-5"></i>
+            </a>
+            <a href="#" class="hover:text-[#e8e4d1] transition-colors">
+              <i class="fas fa-envelope h-5 w-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-[#683711] mt-8 pt-6 text-center text-sm">
+        <p>© 2024 Question Maker. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Sample questions data for demo
+      const sampleQuestions = [
+        { 
+          id: "1", 
+          content: "What is the primary function of mitochondria in a cell?", 
+          type: "mcq",
+          topic: "Biology" 
+        },
+        { 
+          id: "2", 
+          content: "Explain the concept of supply and demand in economics and provide real-world examples.", 
+          type: "theory",
+          topic: "Economics" 
+        },
+        { 
+          id: "3", 
+          content: "Which of the following is a noble gas? A) Oxygen B) Nitrogen C) Helium D) Hydrogen", 
+          type: "mcq",
+          topic: "Chemistry" 
+        }
+      ];
+
+      // Handle search form submission
+      $('#search-form').submit(function(e) {
+        e.preventDefault();
+        const searchTerm = $('#search-input').val();
+        
+        // Show loading state
+        $('#search-btn').text('Searching...');
+        $('#search-btn').prop('disabled', true);
+        
+        // Simulate API call with setTimeout
+        setTimeout(function() {
+          // Filter questions based on search term
+          const filtered = searchTerm.trim() === "" 
+            ? sampleQuestions 
+            : sampleQuestions.filter(q => 
+                q.content.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                (q.topic && q.topic.toLowerCase().includes(searchTerm.toLowerCase()))
+              );
+          
+          // Display results
+          displayResults(filtered, searchTerm);
+          
+          // Reset button state
+          $('#search-btn').text('Search');
+          $('#search-btn').prop('disabled', false);
+          
+        }, 800); // Simulate loading time
+      });
+      
+      // Function to display search results
+      function displayResults(questions, searchTerm) {
+        const resultsContainer = $('#results-container');
+        resultsContainer.empty();
+        
+        if (questions.length === 0) {
+          resultsContainer.html('<p class="text-center py-8 text-[#4E1F00]/60">No questions found. Try a different search term.</p>');
+          showToast('No questions found', 'Try searching with a different term', 'error');
+        } else {
+          showToast(`Found ${questions.length} questions`, `Search results for "${searchTerm}"`, 'success');
+          
+          questions.forEach(question => {
+            const badgeType = question.type === 'mcq' ? 'bg-blue-500' : 'bg-slate-500';
+            const badgeText = question.type === 'mcq' ? 'Multiple Choice' : 'Theory';
+            
+            const questionCard = `
+              <div class="question-card fade-in border rounded-lg p-4 mb-3 bg-white transition-all hover:shadow-md">
+                <div class="p-4 pb-2 flex flex-row justify-between items-start">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${badgeType} text-white">
+                    ${badgeText}
+                  </span>
+                  ${question.topic ? `<span class="text-sm text-slate-500">${question.topic}</span>` : ''}
+                </div>
+                <div class="p-4 pt-2">
+                  <p class="text-base">${question.content}</p>
+                </div>
+              </div>
+            `;
+            
+            resultsContainer.append(questionCard);
+          });
+        }
+      }
+      
+      // Function to show toast notifications
+      function showToast(title, message, type = 'success') {
+        const toast = `
+          <div class="toast ${type} animate-fade-in mb-3">
+            <div class="toast-header">
+              <strong>${title}</strong>
+              <button class="close-toast">&times;</button>
+            </div>
+            <div class="toast-body">
+              ${message}
+            </div>
+          </div>
+        `;
+        
+        $('#toast-container').append(toast);
+        
+        // Auto-remove toast after 5 seconds
+        setTimeout(function() {
+          $('.toast').first().remove();
+        }, 5000);
+        
+        // Close toast on click
+        $('.close-toast').click(function() {
+          $(this).closest('.toast').remove();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

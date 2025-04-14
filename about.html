@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Question Maker</title>
+  <meta name="description" content="Learn more about the Question Maker platform and team." />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4E1F00',
+            secondary: '#F8F4E1',
+            accent: '#683711'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-slate-100">
+  <!-- Header/Navigation -->
+  <header id="header" class="fixed w-full z-50 backdrop-blur-md bg-white/60">
+    <div class="container mx-auto">
+      <div class="flex justify-between items-center py-4 px-4 md:px-8">
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="flex items-center space-x-2">
+            <span class="text-[#4E1F00] text-2xl font-bold">Q</span>
+            <h1 class="text-xl md:text-2xl font-bold text-[#4E1F00]">Question Maker</h1>
+          </a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-[#4E1F00] hover:bg-[#3a1700]/10 p-2 rounded">
+            <i class="fas fa-bars w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Desktop navigation -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-6 items-center">
+            <li>
+              <a href="index.html" class="flex items-center space-x-1 hover:text-[#683711] transition-colors text-[#4E1F00]">
+                <i class="fas fa-home h-4 w-4"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-[#683711] pt-3 pb-2 px-4">
+        <ul class="space-y-3">
+          <li>
+            <a href="index.html" class="flex items-center space-x-2 hover:text-[#683711] transition-colors py-1 text-[#4E1F00]">
+              <i class="fas fa-home h-4 w-4"></i>
+              <span>Home</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow py-12 px-4 mt-16">
+    <div class="container mx-auto max-w-5xl">
+      <div class="text-center mb-12 opacity-0" id="about-heading">
+        <h1 class="text-4xl font-bold mb-4 text-slate-800">About Our Team</h1>
+        <div class="flex items-center justify-center mb-4">
+          <i class="fas fa-users text-blue-600 mr-2"></i>
+          <p class="text-xl text-slate-600">
+            Meet the people behind Question Maker
+          </p>
+        </div>
+        <p class="text-slate-600 max-w-3xl mx-auto">
+          Our team of dedicated professionals worked together to create this educational platform 
+          for generating and finding quality questions across various subjects.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 opacity-0" id="team-grid">
+        <!-- Team Member 1 -->
+        <div class="team-card">
+          <div class="h-full overflow-hidden hover:shadow-lg transition-shadow rounded-lg">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white pb-12 relative p-6">
+              <div class="absolute -bottom-12 left-6">
+                <div class="h-24 w-24 border-4 border-white shadow-md rounded-full overflow-hidden">
+                  <img src="https://i.pravatar.cc/300?img=1" alt="Jane Smith" class="object-cover w-full h-full" />
+                </div>
+              </div>
+              <h3 class="text-xl">Jane Smith</h3>
+              <p class="text-blue-100">Lead Developer</p>
+            </div>
+            <div class="pt-16 pb-6 px-6">
+              <p class="text-slate-600 mb-6">Jane is an experienced full-stack developer specializing in React and Node.js. She led the architecture and development of the Question Maker application.</p>
+              <div class="flex flex-wrap gap-3">
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md hover:bg-slate-50">
+                  <i class="fas fa-envelope"></i>
+                  <span class="hidden sm:inline">jane@example.com</span>
+                </a>
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md hover:bg-slate-50">
+                  <i class="fab fa-github"></i>
+                  <span class="hidden sm:inline">GitHub</span>
+                </a>
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md hover:bg-slate-50">
+                  <i class="fab fa-linkedin"></i>
+                  <span class="hidden sm:inline">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-card">
+          <div class="h-full overflow-hidden hover:shadow-lg transition-shadow rounded-lg">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white pb-12 relative p-6">
+              <div class="absolute -bottom-12 left-6">
+                <div class="h-24 w-24 border-4 border-white shadow-md rounded-full overflow-hidden">
+                  <img src="https://i.pravatar.cc/300?img=2" alt="Michael Chen" class="object-cover w-full h-full" />
+                </div>
+              </div>
+              <h3 class="text-xl">Michael Chen</h3>
+              <p class="text-blue-100">UI/UX Designer</p>
+            </div>
+            <div class="pt-16 pb-6 px-6">
+              <p class="text-slate-600 mb-6">Michael created the user interface design and experience flow for the Question Maker. His focus on accessibility and user-friendly design helped shape the application.</p>
+              <div class="flex flex-wrap gap-3">
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md hover:bg-slate-50">
+                  <i class="fas fa-envelope"></i>
+                  <span class="hidden sm:inline">michael@example.com</span>
+                </a>
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md hover:bg-slate-50">
+                  <i class="fab fa-linkedin"></i>
+                  <span class="hidden sm:inline">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-card">
+          <div class="h-full overflow-hidden hover:shadow-lg transition-shadow rounded-lg">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white pb-12 relative p-6">
+              <div class="absolute -bottom-12 left-6">
+                <div class="h-24 w-24 border-4 border-white shadow-md rounded-full overflow-hidden">
+                  <img src="https://i.pravatar.cc/300?img=3" alt="Sarah Johnson" class="object-cover w-full h-full" />
+                </div>
+              </div>
+              <h3 class="text-xl">Sarah Johnson</h3>
+              <p class="text-blue-100">Backend Developer</p>
+            </div>
+            <div class="pt-16 pb-6 px-6">
+              <p class="text-slate-600 mb-6">Sarah developed the API and database architecture for storing and retrieving questions effectively across multiple subjects.</p>
+              <div class="flex flex-wrap gap-3">
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md hover:bg-slate-50">
+                  <i class="fas fa-envelope"></i>
+                  <span class="hidden sm:inline">sarah@example.com</span>
+                </a>
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md hover:bg-slate-50">
+                  <i class="fab fa-github"></i>
+                  <span class="hidden sm:inline">GitHub</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-card">
+          <div class="h-full overflow-hidden hover:shadow-lg transition-shadow rounded-lg">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white pb-12 relative p-6">
+              <div class="absolute -bottom-12 left-6">
+                <div class="h-24 w-24 border-4 border-white shadow-md rounded-full overflow-hidden">
+                  <img src="https://i.pravatar.cc/300?img=4" alt="David Rodriguez" class="object-cover w-full h-full" />
+                </div>
+              </div>
+              <h3 class="text-xl">David Rodriguez</h3>
+              <p class="text-blue-100">QA Engineer</p>
+            </div>
+            <div class="pt-16 pb-6 px-6">
+              <p class="text-slate-600 mb-6">David ensured the quality of the Question Maker by implementing thorough test suites and addressing bugs and usability issues.</p>
+              <div class="flex flex-wrap gap-3">
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md hover:bg-slate-50">
+                  <i class="fas fa-envelope"></i>
+                  <span class="hidden sm:inline">david@example.com</span>
+                </a>
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md hover:bg-slate-50">
+                  <i class="fab fa-github"></i>
+                  <span class="hidden sm:inline">GitHub</span>
+                </a>
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-1.5 border rounded-md hover:bg-slate-50">
+                  <i class="fab fa-linkedin"></i>
+                  <span class="hidden sm:inline">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-12 text-center opacity-0" id="return-btn">
+        <a 
+          href="index.html"
+          class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md font-medium"
+        >
+          Return to Home
+        </a>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="bg-[#4E1F00] text-[#F8F4E1]">
+    <div class="container mx-auto py-8 px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <div class="flex items-center space-x-2 mb-3">
+            <span class="text-[#F8F4E1] text-xl font-bold">Q</span>
+            <h2 class="text-xl text-[#F8F4E1] font-semibold">Question Maker</h2>
+          </div>
+          <p class="text-sm">
+            Create, search, and share educational questions for any subject or topic.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-[#F8F4E1] mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#about" class="text-sm hover:text-[#e8e4d1] transition-colors">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="search.html" class="text-sm hover:text-[#e8e4d1] transition-colors">
+                Search Questions
+              </a>
+            </li>
+            <li>
+              <a href="upload.html" class="text-sm hover:text-[#e8e4d1] transition-colors">
+                Upload Questions
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-[#F8F4E1] mb-4">Connect</h3>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-[#e8e4d1] transition-colors">
+              <i class="fab fa-github h-5 w-5"></i>
+            </a>
+            <a href="#" class="hover:text-[#e8e4d1] transition-colors">
+              <i class="fab fa-twitter h-5 w-5"></i>
+            </a>
+            <a href="#" class="hover:text-[#e8e4d1] transition-colors">
+              <i class="fas fa-envelope h-5 w-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-[#683711] mt-8 pt-6 text-center text-sm">
+        <p>© 2024 Question Maker. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Animate elements on page load
+      $('#about-heading').animate({
+        opacity: 1
+      }, 800);
+      
+      // Animate team cards with delay
+      setTimeout(function() {
+        $('#team-grid').animate({
+          opacity: 1
+        }, 800);
+        
+        // Animate each team card individually
+        $('.team-card').each(function(index) {
+          $(this).css({
+            'opacity': 0,
+            'transform': 'translateY(20px)'
+          });
+          
+          setTimeout(function(card) {
+            $(card).css({
+              'transition': 'all 0.8s ease-out',
+              'opacity': 1,
+              'transform': 'translateY(0)'
+            });
+          }, 200 * index, this);
+        });
+      }, 300);
+      
+      // Animate return button
+      setTimeout(function() {
+        $('#return-btn').animate({
+          opacity: 1
+        }, 800);
+      }, 1200);
+    });
+  </script>
+</body>
+</html>

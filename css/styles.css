@@ -1,0 +1,87 @@
+
+/* Main styling for Question Maker */
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatQuestionMark {
+  0% { transform: translateX(-50px) translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  100% { transform: translateX(calc(100vw + 50px)) translateY(30px) rotate(15deg); opacity: 0; }
+}
+
+/* Animation utility classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.question-mark {
+  position: absolute;
+  color: #F8F4E1;
+  opacity: 0.2;
+  animation: floatQuestionMark 15s linear infinite;
+}
+
+/* Header styling */
+#header {
+  box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+/* Card styling */
+.question-card {
+  transition: all 0.3s ease;
+}
+
+.question-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Button hover effects */
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Mobile menu toggle */
+#mobile-menu {
+  transition: all 0.3s ease;
+}
+
+/* Footer link styling */
+footer a {
+  transition: color 0.2s ease;
+}
+
+/* About page team cards */
+.team-card {
+  transition: all 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .team-card .absolute {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
