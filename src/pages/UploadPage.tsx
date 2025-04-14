@@ -14,9 +14,13 @@ import { Link } from "react-router-dom";
 
 const UploadPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [topic, setTopic] = useState("");
+  const [subjectCode, setSubjectCode] = useState("");
+  const [subjectName, setSubjectName] = useState("");
   const [question, setQuestion] = useState("");
-  const [questionType, setQuestionType] = useState("mcq");
+  const [difficulty, setDifficulty] = useState("medium");
+  const [taxonomyRank, setTaxonomyRank] = useState("CO1");
+  const [maxTime, setMaxTime] = useState("30");
+  const [marks, setMarks] = useState("10");
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
 
@@ -27,9 +31,13 @@ const UploadPage = () => {
     // Simulate API call
     setTimeout(() => {
       console.log({
-        topic,
+        subjectCode,
+        subjectName,
         question,
-        questionType
+        difficulty,
+        taxonomyRank,
+        maxTime,
+        marks
       });
       
       // Show success animation
@@ -44,9 +52,13 @@ const UploadPage = () => {
       
       // Reset form and state after delay
       setTimeout(() => {
-        setTopic("");
+        setSubjectCode("");
+        setSubjectName("");
         setQuestion("");
-        setQuestionType("mcq");
+        setDifficulty("medium");
+        setTaxonomyRank("CO1");
+        setMaxTime("30");
+        setMarks("10");
         setIsSubmitting(false);
         setIsSuccess(false);
       }, 1500);
@@ -137,37 +149,31 @@ const UploadPage = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="topic" className="text-sm font-medium text-[#4E1F00]">
-                      Topic
+                    <label htmlFor="subject-code" className="text-sm font-medium text-[#4E1F00]">
+                      Subject Code
                     </label>
                     <Input
-                      id="topic"
-                      placeholder="E.g., Mathematics, Science, History..."
-                      value={topic}
-                      onChange={(e) => setTopic(e.target.value)}
+                      id="subject-code"
+                      placeholder="E.g., CS101, MATH202..."
+                      value={subjectCode}
+                      onChange={(e) => setSubjectCode(e.target.value)}
                       required
                       className="border-[#4E1F00]"
                     />
                   </motion.div>
                   
                   <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="question-type" className="text-sm font-medium text-[#4E1F00]">
-                      Question Type
+                    <label htmlFor="subject-name" className="text-sm font-medium text-[#4E1F00]">
+                      Subject Name
                     </label>
-                    <Select 
-                      value={questionType} 
-                      onValueChange={setQuestionType}
-                    >
-                      <SelectTrigger className="border-[#4E1F00] text-[#4E1F00]">
-                        <SelectValue placeholder="Select question type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="mcq">Multiple Choice Question</SelectItem>
-                        <SelectItem value="theory">Theory Question</SelectItem>
-                        <SelectItem value="truefalse">True/False Question</SelectItem>
-                        <SelectItem value="matching">Matching Question</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Input
+                      id="subject-name"
+                      placeholder="E.g., Introduction to Computer Science, Calculus II..."
+                      value={subjectName}
+                      onChange={(e) => setSubjectName(e.target.value)}
+                      required
+                      className="border-[#4E1F00]"
+                    />
                   </motion.div>
                   
                   <motion.div variants={itemVariants} className="space-y-2">
@@ -183,6 +189,81 @@ const UploadPage = () => {
                       required
                     />
                   </motion.div>
+                  
+                  <motion.div variants={itemVariants} className="space-y-2">
+                    <label htmlFor="difficulty" className="text-sm font-medium text-[#4E1F00]">
+                      Difficulty
+                    </label>
+                    <Select 
+                      value={difficulty} 
+                      onValueChange={setDifficulty}
+                    >
+                      <SelectTrigger className="border-[#4E1F00] text-[#4E1F00]" id="difficulty">
+                        <SelectValue placeholder="Select difficulty level" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="easy">Easy</SelectItem>
+                        <SelectItem value="medium">Medium</SelectItem>
+                        <SelectItem value="hard">Hard</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </motion.div>
+                  
+                  <motion.div variants={itemVariants} className="space-y-2">
+                    <label htmlFor="taxonomy-rank" className="text-sm font-medium text-[#4E1F00]">
+                      Bloom's Taxonomy Rank
+                    </label>
+                    <Select 
+                      value={taxonomyRank} 
+                      onValueChange={setTaxonomyRank}
+                    >
+                      <SelectTrigger className="border-[#4E1F00] text-[#4E1F00]" id="taxonomy-rank">
+                        <SelectValue placeholder="Select taxonomy rank" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="CO1">CO1</SelectItem>
+                        <SelectItem value="CO2">CO2</SelectItem>
+                        <SelectItem value="CO3">CO3</SelectItem>
+                        <SelectItem value="CO4">CO4</SelectItem>
+                        <SelectItem value="CO5">CO5</SelectItem>
+                        <SelectItem value="CO6">CO6</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </motion.div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <motion.div variants={itemVariants} className="space-y-2">
+                      <label htmlFor="max-time" className="text-sm font-medium text-[#4E1F00]">
+                        Maximum Time (minutes)
+                      </label>
+                      <Input
+                        id="max-time"
+                        type="number"
+                        min="1"
+                        placeholder="E.g., 30"
+                        value={maxTime}
+                        onChange={(e) => setMaxTime(e.target.value)}
+                        required
+                        className="border-[#4E1F00]"
+                      />
+                    </motion.div>
+                    
+                    <motion.div variants={itemVariants} className="space-y-2">
+                      <label htmlFor="marks" className="text-sm font-medium text-[#4E1F00]">
+                        Marks
+                      </label>
+                      <Input
+                        id="marks"
+                        type="number"
+                        min="1"
+                        placeholder="E.g., 10"
+                        value={marks}
+                        onChange={(e) => setMarks(e.target.value)}
+                        required
+                        className="border-[#4E1F00]"
+                      />
+                    </motion.div>
+                  </div>
                   
                   <motion.div variants={itemVariants}>
                     <Button 

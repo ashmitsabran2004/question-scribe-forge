@@ -110,25 +110,25 @@
           <div class="p-6">
             <form id="upload-form" class="space-y-5">
               <div class="space-y-2">
-                <label for="topic" class="text-sm font-medium">Topic</label>
+                <label for="subject-code" class="text-sm font-medium">Subject Code</label>
                 <input
-                  id="topic"
+                  id="subject-code"
                   type="text"
-                  placeholder="E.g., Mathematics, Science, History..."
+                  placeholder="E.g., CS101, MATH202..."
                   class="w-full border rounded-md px-4 py-2"
                   required
                 />
               </div>
               
               <div class="space-y-2">
-                <label for="question-type" class="text-sm font-medium">Question Type</label>
-                <select 
-                  id="question-type" 
+                <label for="subject-name" class="text-sm font-medium">Subject Name</label>
+                <input
+                  id="subject-name"
+                  type="text"
+                  placeholder="E.g., Introduction to Computer Science, Calculus II..."
                   class="w-full border rounded-md px-4 py-2"
-                >
-                  <option value="mcq">Multiple Choice Question</option>
-                  <option value="theory">Theory Question</option>
-                </select>
+                  required
+                />
               </div>
               
               <div class="space-y-2">
@@ -141,10 +141,67 @@
                 ></textarea>
               </div>
               
+              <div class="space-y-2">
+                <label for="difficulty" class="text-sm font-medium">Difficulty</label>
+                <select 
+                  id="difficulty" 
+                  class="w-full border rounded-md px-4 py-2"
+                  required
+                >
+                  <option value="easy">Easy</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </div>
+              
+              <div class="space-y-2">
+                <label for="taxonomy-rank" class="text-sm font-medium">Bloom's Taxonomy Rank</label>
+                <select 
+                  id="taxonomy-rank" 
+                  class="w-full border rounded-md px-4 py-2"
+                  required
+                >
+                  <option value="CO1" selected>CO1</option>
+                  <option value="CO2">CO2</option>
+                  <option value="CO3">CO3</option>
+                  <option value="CO4">CO4</option>
+                  <option value="CO5">CO5</option>
+                  <option value="CO6">CO6</option>
+                </select>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="space-y-2">
+                  <label for="max-time" class="text-sm font-medium">Maximum Time (minutes)</label>
+                  <input
+                    id="max-time"
+                    type="number"
+                    min="1"
+                    value="30"
+                    placeholder="E.g., 30"
+                    class="w-full border rounded-md px-4 py-2"
+                    required
+                  />
+                </div>
+                
+                <div class="space-y-2">
+                  <label for="marks" class="text-sm font-medium">Marks</label>
+                  <input
+                    id="marks"
+                    type="number"
+                    min="1"
+                    value="10"
+                    placeholder="E.g., 10"
+                    class="w-full border rounded-md px-4 py-2"
+                    required
+                  />
+                </div>
+              </div>
+              
               <button 
                 type="submit"
                 id="upload-btn"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md"
+                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md w-full"
               >
                 Upload Question
               </button>
@@ -224,9 +281,13 @@
         e.preventDefault();
         
         // Get form values
-        const topic = $('#topic').val();
-        const questionType = $('#question-type').val();
+        const subjectCode = $('#subject-code').val();
+        const subjectName = $('#subject-name').val();
         const question = $('#question').val();
+        const difficulty = $('#difficulty').val();
+        const taxonomyRank = $('#taxonomy-rank').val();
+        const maxTime = $('#max-time').val();
+        const marks = $('#marks').val();
         
         // Show loading state
         $('#upload-btn').text('Uploading...');
@@ -236,15 +297,23 @@
         setTimeout(function() {
           // Log the data (in a real app, this would be sent to a server)
           console.log({
-            topic: topic,
-            questionType: questionType,
-            question: question
+            subjectCode: subjectCode,
+            subjectName: subjectName,
+            question: question,
+            difficulty: difficulty,
+            taxonomyRank: taxonomyRank,
+            maxTime: maxTime,
+            marks: marks
           });
           
           // Reset form
-          $('#topic').val('');
-          $('#question-type').val('mcq');
+          $('#subject-code').val('');
+          $('#subject-name').val('');
           $('#question').val('');
+          $('#difficulty').val('medium');
+          $('#taxonomy-rank').val('CO1');
+          $('#max-time').val('30');
+          $('#marks').val('10');
           
           // Reset button state
           $('#upload-btn').text('Upload Question');
