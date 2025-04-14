@@ -65,35 +65,20 @@ const UploadPage = () => {
     }, 1000);
   };
 
+  // Simplify animation variants to reduce potential issues
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 }
-    }
+    hidden: { y: 10, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.3 } }
   };
 
   const successVariants = {
     hidden: { scale: 0 },
-    visible: { 
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 260,
-        damping: 20
-      }
-    }
+    visible: { scale: 1, transition: { type: "spring", stiffness: 200, damping: 15 } }
   };
 
   return (
@@ -268,7 +253,7 @@ const UploadPage = () => {
                   <motion.div variants={itemVariants}>
                     <Button 
                       type="submit"
-                      className="bg-[#4E1F00] hover:bg-[#3a1700] text-[#F8F4E1] w-full transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]" 
+                      className="bg-[#4E1F00] hover:bg-[#3a1700] text-[#F8F4E1] w-full" 
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Uploading..." : "Upload Question"}
