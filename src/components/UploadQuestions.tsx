@@ -6,13 +6,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileUp } from "lucide-react";
+import { FileUp, BookOpen, Clock, Award } from "lucide-react";
 
 const UploadQuestions = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [topic, setTopic] = useState("");
+  const [subjectCode, setSubjectCode] = useState("");
+  const [subjectName, setSubjectName] = useState("");
   const [question, setQuestion] = useState("");
-  const [questionType, setQuestionType] = useState("mcq");
+  const [difficulty, setDifficulty] = useState("medium");
+  const [taxonomyRank, setTaxonomyRank] = useState("CO1");
+  const [maxTime, setMaxTime] = useState("");
+  const [marks, setMarks] = useState("");
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -22,15 +26,23 @@ const UploadQuestions = () => {
     // Simulate API call
     setTimeout(() => {
       console.log({
-        topic,
+        subjectCode,
+        subjectName,
         question,
-        questionType
+        difficulty,
+        taxonomyRank,
+        maxTime,
+        marks
       });
       
       // Reset form
-      setTopic("");
+      setSubjectCode("");
+      setSubjectName("");
       setQuestion("");
-      setQuestionType("mcq");
+      setDifficulty("medium");
+      setTaxonomyRank("CO1");
+      setMaxTime("");
+      setMarks("");
       setIsSubmitting(false);
       
       // Show success toast
@@ -57,35 +69,32 @@ const UploadQuestions = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="space-y-2">
-                <label htmlFor="topic" className="text-sm font-medium">
-                  Topic
-                </label>
-                <Input
-                  id="topic"
-                  placeholder="E.g., Mathematics, Science, History..."
-                  value={topic}
-                  onChange={(e) => setTopic(e.target.value)}
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="question-type" className="text-sm font-medium">
-                  Question Type
-                </label>
-                <Select 
-                  value={questionType} 
-                  onValueChange={setQuestionType}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select question type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="mcq">Multiple Choice Question</SelectItem>
-                    <SelectItem value="theory">Theory Question</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="space-y-2">
+                  <label htmlFor="subject-code" className="text-sm font-medium">
+                    Subject Code
+                  </label>
+                  <Input
+                    id="subject-code"
+                    placeholder="E.g., CS101"
+                    value={subjectCode}
+                    onChange={(e) => setSubjectCode(e.target.value)}
+                    required
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label htmlFor="subject-name" className="text-sm font-medium">
+                    Subject Name
+                  </label>
+                  <Input
+                    id="subject-name"
+                    placeholder="E.g., Introduction to Computer Science"
+                    value={subjectName}
+                    onChange={(e) => setSubjectName(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
               
               <div className="space-y-2">
@@ -100,6 +109,81 @@ const UploadQuestions = () => {
                   className="min-h-[120px]"
                   required
                 />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="space-y-2">
+                  <label htmlFor="difficulty" className="text-sm font-medium">
+                    Difficulty
+                  </label>
+                  <Select 
+                    value={difficulty} 
+                    onValueChange={setDifficulty}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select difficulty level" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="easy">Easy</SelectItem>
+                      <SelectItem value="medium">Medium</SelectItem>
+                      <SelectItem value="hard">Hard</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <label htmlFor="taxonomy-rank" className="text-sm font-medium">
+                    Bloom's Taxonomy Rank
+                  </label>
+                  <Select 
+                    value={taxonomyRank} 
+                    onValueChange={setTaxonomyRank}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select taxonomy rank" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="CO1">CO1</SelectItem>
+                      <SelectItem value="CO2">CO2</SelectItem>
+                      <SelectItem value="CO3">CO3</SelectItem>
+                      <SelectItem value="CO4">CO4</SelectItem>
+                      <SelectItem value="CO5">CO5</SelectItem>
+                      <SelectItem value="CO6">CO6</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="space-y-2">
+                  <label htmlFor="max-time" className="text-sm font-medium flex items-center gap-1">
+                    <Clock className="h-4 w-4" /> Maximum Time (minutes)
+                  </label>
+                  <Input
+                    id="max-time"
+                    type="number"
+                    placeholder="E.g., 15"
+                    value={maxTime}
+                    onChange={(e) => setMaxTime(e.target.value)}
+                    required
+                    min="1"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label htmlFor="marks" className="text-sm font-medium flex items-center gap-1">
+                    <Award className="h-4 w-4" /> Marks
+                  </label>
+                  <Input
+                    id="marks"
+                    type="number"
+                    placeholder="E.g., 10"
+                    value={marks}
+                    onChange={(e) => setMarks(e.target.value)}
+                    required
+                    min="1"
+                  />
+                </div>
               </div>
               
               <Button 
