@@ -4,13 +4,295 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Question Bank</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-  <!-- Add the required Lovable script tag -->
-  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  <title>Question Maker</title>
+  <meta name="description" content="Create, search, and share educational questions for any subject or topic." />
+  <meta name="author" content="Question Maker Team" />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4E1F00',
+            secondary: '#F8F4E1',
+            accent: '#683711'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
+<body class="min-h-screen flex flex-col">
+  <!-- Header/Navigation -->
+  <header id="header" class="fixed w-full z-50 backdrop-blur-md bg-white/60">
+    <div class="container mx-auto">
+      <div class="flex justify-between items-center py-4 px-4 md:px-8">
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="flex items-center space-x-2">
+            <span class="text-[#4E1F00] text-2xl font-bold">Q</span>
+            <h1 class="text-xl md:text-2xl font-bold text-[#4E1F00]">Question Maker</h1>
+          </a>
+        </div>
+        
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-[#4E1F00] hover:bg-[#3a1700]/10 p-2 rounded">
+            <i class="fas fa-bars w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Desktop navigation -->
+        <nav class="hidden md:block">
+          <ul class="flex space-x-6 items-center">
+            <li>
+              <a href="about.html" class="flex items-center space-x-1 hover:text-[#683711] transition-colors text-[#4E1F00]">
+                <i class="fas fa-info-circle h-4 w-4"></i>
+                <span>About</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-[#683711] pt-3 pb-2 px-4">
+        <ul class="space-y-3">
+          <li>
+            <a href="about.html" class="flex items-center space-x-2 hover:text-[#683711] transition-colors py-1 text-[#4E1F00]">
+              <i class="fas fa-info-circle h-4 w-4"></i>
+              <span>About</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section (with animation) -->
+  <div id="hero" class="bg-gradient-to-br from-[#4E1F00] to-black text-[#F8F4E1] py-16 md:py-24 relative overflow-hidden mt-16">
+    <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none" id="question-marks-container">
+      <!-- Question marks will be added dynamically with JavaScript -->
+    </div>
+    
+    <div class="container mx-auto px-4 md:px-8 text-center relative z-10">
+      <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight relative z-10 opacity-0 transform translate-y-[-20px]" id="hero-heading">
+        Create and Find <span class="text-[#F8F4E1]">Questions</span> on Any Subject
+      </h1>
+      
+      <p class="text-lg md:text-xl text-[#e8e4d1] max-w-2xl mx-auto mb-8 opacity-0" id="hero-text">
+        Generate, search, and share multiple-choice and long-answer questions for your educational needs
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 opacity-0 transform translate-y-[30px]" id="hero-buttons">
+        <button 
+          class="bg-[#4E1F00] border border-[#F8F4E1] text-[#F8F4E1] px-8 py-2 text-lg hover:bg-[#683711] transition-colors rounded-md"
+          id="search-button"
+        >
+          Search Questions
+        </button>
+
+        <button 
+          class="border-[#F8F4E1] text-[#4E1F00] bg-[#F8F4E1] hover:bg-[#e8e4d1] px-8 py-2 text-lg transition-colors rounded-md"
+          id="upload-button"
+        >
+          Upload Questions
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 px-6 bg-gradient-to-b from-white to-[#F2FCE2]">
+    <div class="container mx-auto max-w-6xl">
+      <div class="text-center mb-16">
+        <h2 class="text-5xl font-bold mb-8 text-slate-800">About Question Maker</h2>
+        <p class="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+          Question Maker is an innovative platform designed to revolutionize educational content creation and knowledge sharing. 
+          Our mission is to provide educators, students, and lifelong learners with a comprehensive tool for generating, discovering, 
+          and exchanging high-quality educational questions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <!-- Feature 1 -->
+        <div class="transition-all hover:shadow-lg group border-0 bg-white/80 backdrop-blur-sm rounded-lg">
+          <div class="pt-10 pb-8 px-8 text-center">
+            <div class="flex justify-center mb-6 bg-opacity-10 p-4 rounded-full mx-auto" style="background-color: rgba(59, 130, 246, 0.1)">
+              <i class="fas fa-book text-blue-500 text-4xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-slate-800 group-hover:text-blue-600 transition-colors">
+              Extensive Question Database
+            </h3>
+            <p class="text-slate-600 leading-relaxed text-lg">
+              Access a comprehensive collection of questions across various subjects and educational levels. Our database is constantly growing with contributions from educators and subject matter experts from around the world.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="transition-all hover:shadow-lg group border-0 bg-white/80 backdrop-blur-sm rounded-lg">
+          <div class="pt-10 pb-8 px-8 text-center">
+            <div class="flex justify-center mb-6 bg-opacity-10 p-4 rounded-full mx-auto" style="background-color: rgba(34, 197, 94, 0.1)">
+              <i class="fas fa-search text-green-500 text-4xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-slate-800 group-hover:text-blue-600 transition-colors">
+              Advanced Question Search
+            </h3>
+            <p class="text-slate-600 leading-relaxed text-lg">
+              Easily find questions by topic, difficulty, or question type with our powerful search functionality. Filter results based on your specific needs and save time finding exactly what you're looking for.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="transition-all hover:shadow-lg group border-0 bg-white/80 backdrop-blur-sm rounded-lg">
+          <div class="pt-10 pb-8 px-8 text-center">
+            <div class="flex justify-center mb-6 bg-opacity-10 p-4 rounded-full mx-auto" style="background-color: rgba(168, 85, 247, 0.1)">
+              <i class="fas fa-upload text-purple-500 text-4xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-slate-800 group-hover:text-blue-600 transition-colors">
+              Community Contributions
+            </h3>
+            <p class="text-slate-600 leading-relaxed text-lg">
+              Empower educators and learners by uploading and sharing your own high-quality questions. Join our collaborative community and help build a diverse repository of educational content for everyone to benefit from.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-20 text-center">
+        <div class="max-w-4xl mx-auto space-y-8 text-slate-700 text-lg leading-relaxed">
+          <p>
+            Whether you're a teacher preparing for a class, a student studying for an exam, 
+            or an educational content creator, Question Maker provides the tools you need to 
+            enhance learning and assessment experiences.
+          </p>
+          
+          <p>
+            Our platform supports multiple question types, including multiple-choice questions, 
+            short-answer prompts, essay questions, and long-form theory questions, catering to 
+            diverse learning and teaching styles across all educational levels.
+          </p>
+          
+          <p>
+            The intuitive interface makes it easy to create, organize, and share question sets, 
+            allowing you to build comprehensive assessments or focused practice materials in minutes 
+            rather than hours.
+          </p>
+          
+          <p>
+            Join our growing community of educators and learners, and transform the way 
+            educational content is created, shared, and discovered.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#4E1F00] text-[#F8F4E1]">
+    <div class="container mx-auto py-8 px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <div class="flex items-center space-x-2 mb-3">
+            <span class="text-[#F8F4E1] text-xl font-bold">Q</span>
+            <h2 class="text-xl text-[#F8F4E1] font-semibold">Question Maker</h2>
+          </div>
+          <p class="text-sm">
+            Create, search, and share educational questions for any subject or topic.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-[#F8F4E1] mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#about" class="text-sm hover:text-[#e8e4d1] transition-colors">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="search.html" class="text-sm hover:text-[#e8e4d1] transition-colors">
+                Search Questions
+              </a>
+            </li>
+            <li>
+              <a href="upload.html" class="text-sm hover:text-[#e8e4d1] transition-colors">
+                Upload Questions
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-[#F8F4E1] mb-4">Connect</h3>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-[#e8e4d1] transition-colors">
+              <i class="fab fa-github h-5 w-5"></i>
+            </a>
+            <a href="#" class="hover:text-[#e8e4d1] transition-colors">
+              <i class="fab fa-twitter h-5 w-5"></i>
+            </a>
+            <a href="#" class="hover:text-[#e8e4d1] transition-colors">
+              <i class="fas fa-envelope h-5 w-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-[#683711] mt-8 pt-6 text-center text-sm">
+        <p>© 2024 Question Maker. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script>
+    // Animate hero elements on page load
+    $(document).ready(function() {
+      // Animate hero heading
+      $('#hero-heading').animate({
+        opacity: 1,
+        top: 0
+      }, 1000);
+      
+      // Animate hero text
+      setTimeout(function() {
+        $('#hero-text').animate({
+          opacity: 1
+        }, 1000);
+      }, 400);
+      
+      // Animate hero buttons
+      setTimeout(function() {
+        $('#hero-buttons').animate({
+          opacity: 1,
+          top: 0
+        }, 1000);
+      }, 800);
+      
+      // Handle button clicks
+      $('#search-button').click(function() {
+        window.location.href = 'search.html';
+      });
+      
+      $('#upload-button').click(function() {
+        window.location.href = 'upload.html';
+      });
+    });
+  </script>
 </body>
 </html>
