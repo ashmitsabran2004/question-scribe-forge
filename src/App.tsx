@@ -11,10 +11,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AboutPage from "./pages/AboutPage";
-import UploadPage from "./pages/UploadPage"; // Import directly instead of lazy loading
 
 // Lazy-loaded pages for better performance
 const SearchPage = lazy(() => import("./pages/SearchPage"));
+const UploadPage = lazy(() => import("./pages/UploadPage"));
 
 // Loading component for Suspense fallback
 const PageLoader = () => (
@@ -53,7 +53,14 @@ const AnimationLayout = () => {
               </Suspense>
             } 
           />
-          <Route path="/upload" element={<UploadPage />} /> {/* Directly using the imported component */}
+          <Route 
+            path="/upload" 
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <UploadPage />
+              </Suspense>
+            } 
+          />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

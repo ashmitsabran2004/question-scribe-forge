@@ -109,26 +109,28 @@
           </div>
           <div class="p-6">
             <form id="upload-form" class="space-y-5">
-              <div class="space-y-2">
-                <label for="subject-code" class="text-sm font-medium">Subject Code</label>
-                <input
-                  id="subject-code"
-                  type="text"
-                  placeholder="E.g., CS101, MATH202..."
-                  class="w-full border rounded-md px-4 py-2"
-                  required
-                />
-              </div>
-              
-              <div class="space-y-2">
-                <label for="subject-name" class="text-sm font-medium">Subject Name</label>
-                <input
-                  id="subject-name"
-                  type="text"
-                  placeholder="E.g., Introduction to Computer Science, Calculus II..."
-                  class="w-full border rounded-md px-4 py-2"
-                  required
-                />
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="space-y-2">
+                  <label for="subject-code" class="text-sm font-medium">Subject Code</label>
+                  <input
+                    id="subject-code"
+                    type="text"
+                    placeholder="E.g., CS101"
+                    class="w-full border rounded-md px-4 py-2"
+                    required
+                  />
+                </div>
+                
+                <div class="space-y-2">
+                  <label for="subject-name" class="text-sm font-medium">Subject Name</label>
+                  <input
+                    id="subject-name"
+                    type="text"
+                    placeholder="E.g., Introduction to Computer Science"
+                    class="w-full border rounded-md px-4 py-2"
+                    required
+                  />
+                </div>
               </div>
               
               <div class="space-y-2">
@@ -141,59 +143,63 @@
                 ></textarea>
               </div>
               
-              <div class="space-y-2">
-                <label for="difficulty" class="text-sm font-medium">Difficulty</label>
-                <select 
-                  id="difficulty" 
-                  class="w-full border rounded-md px-4 py-2"
-                  required
-                >
-                  <option value="easy">Easy</option>
-                  <option value="medium" selected>Medium</option>
-                  <option value="hard">Hard</option>
-                </select>
-              </div>
-              
-              <div class="space-y-2">
-                <label for="taxonomy-rank" class="text-sm font-medium">Bloom's Taxonomy Rank</label>
-                <select 
-                  id="taxonomy-rank" 
-                  class="w-full border rounded-md px-4 py-2"
-                  required
-                >
-                  <option value="CO1" selected>CO1</option>
-                  <option value="CO2">CO2</option>
-                  <option value="CO3">CO3</option>
-                  <option value="CO4">CO4</option>
-                  <option value="CO5">CO5</option>
-                  <option value="CO6">CO6</option>
-                </select>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="space-y-2">
+                  <label for="difficulty" class="text-sm font-medium">Difficulty</label>
+                  <select 
+                    id="difficulty" 
+                    class="w-full border rounded-md px-4 py-2"
+                    required
+                  >
+                    <option value="easy">Easy</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="hard">Hard</option>
+                  </select>
+                </div>
+                
+                <div class="space-y-2">
+                  <label for="taxonomy-rank" class="text-sm font-medium">Bloom's Taxonomy Rank</label>
+                  <select 
+                    id="taxonomy-rank" 
+                    class="w-full border rounded-md px-4 py-2"
+                    required
+                  >
+                    <option value="CO1">CO1</option>
+                    <option value="CO2">CO2</option>
+                    <option value="CO3">CO3</option>
+                    <option value="CO4">CO4</option>
+                    <option value="CO5">CO5</option>
+                    <option value="CO6">CO6</option>
+                  </select>
+                </div>
               </div>
               
               <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="space-y-2">
-                  <label for="max-time" class="text-sm font-medium">Maximum Time (minutes)</label>
+                  <label for="max-time" class="text-sm font-medium flex items-center gap-1">
+                    <i class="fas fa-clock h-4 w-4"></i> Maximum Time (minutes)
+                  </label>
                   <input
                     id="max-time"
                     type="number"
-                    min="1"
-                    value="30"
-                    placeholder="E.g., 30"
+                    placeholder="E.g., 15"
                     class="w-full border rounded-md px-4 py-2"
                     required
+                    min="1"
                   />
                 </div>
                 
                 <div class="space-y-2">
-                  <label for="marks" class="text-sm font-medium">Marks</label>
+                  <label for="marks" class="text-sm font-medium flex items-center gap-1">
+                    <i class="fas fa-award h-4 w-4"></i> Marks
+                  </label>
                   <input
                     id="marks"
                     type="number"
-                    min="1"
-                    value="10"
                     placeholder="E.g., 10"
                     class="w-full border rounded-md px-4 py-2"
                     required
+                    min="1"
                   />
                 </div>
               </div>
@@ -201,7 +207,7 @@
               <button 
                 type="submit"
                 id="upload-btn"
-                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md w-full"
+                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md"
               >
                 Upload Question
               </button>
@@ -312,8 +318,8 @@
           $('#question').val('');
           $('#difficulty').val('medium');
           $('#taxonomy-rank').val('CO1');
-          $('#max-time').val('30');
-          $('#marks').val('10');
+          $('#max-time').val('');
+          $('#marks').val('');
           
           // Reset button state
           $('#upload-btn').text('Upload Question');

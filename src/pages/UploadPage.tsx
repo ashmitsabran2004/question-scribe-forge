@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/components/ui/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion } from "framer-motion";
-import { FileUp, CheckCircle, Home } from "lucide-react";
+import { FileUp, CheckCircle, Home, BookOpen, Clock, Award } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
@@ -19,8 +19,8 @@ const UploadPage = () => {
   const [question, setQuestion] = useState("");
   const [difficulty, setDifficulty] = useState("medium");
   const [taxonomyRank, setTaxonomyRank] = useState("CO1");
-  const [maxTime, setMaxTime] = useState("30");
-  const [marks, setMarks] = useState("10");
+  const [maxTime, setMaxTime] = useState("");
+  const [marks, setMarks] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
 
@@ -57,28 +57,43 @@ const UploadPage = () => {
         setQuestion("");
         setDifficulty("medium");
         setTaxonomyRank("CO1");
-        setMaxTime("30");
-        setMarks("10");
+        setMaxTime("");
+        setMarks("");
         setIsSubmitting(false);
         setIsSuccess(false);
       }, 1500);
     }, 1000);
   };
 
-  // Simplify animation variants to reduce potential issues
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
   };
 
   const itemVariants = {
-    hidden: { y: 10, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.3 } }
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5 }
+    }
   };
 
   const successVariants = {
     hidden: { scale: 0 },
-    visible: { scale: 1, transition: { type: "spring", stiffness: 200, damping: 15 } }
+    visible: { 
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 260,
+        damping: 20
+      }
+    }
   };
 
   return (
@@ -133,32 +148,34 @@ const UploadPage = () => {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="subject-code" className="text-sm font-medium text-[#4E1F00]">
-                      Subject Code
-                    </label>
-                    <Input
-                      id="subject-code"
-                      placeholder="E.g., CS101, MATH202..."
-                      value={subjectCode}
-                      onChange={(e) => setSubjectCode(e.target.value)}
-                      required
-                      className="border-[#4E1F00]"
-                    />
-                  </motion.div>
-                  
-                  <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="subject-name" className="text-sm font-medium text-[#4E1F00]">
-                      Subject Name
-                    </label>
-                    <Input
-                      id="subject-name"
-                      placeholder="E.g., Introduction to Computer Science, Calculus II..."
-                      value={subjectName}
-                      onChange={(e) => setSubjectName(e.target.value)}
-                      required
-                      className="border-[#4E1F00]"
-                    />
+                  <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                      <label htmlFor="subject-code" className="text-sm font-medium text-[#4E1F00]">
+                        Subject Code
+                      </label>
+                      <Input
+                        id="subject-code"
+                        placeholder="E.g., CS101"
+                        value={subjectCode}
+                        onChange={(e) => setSubjectCode(e.target.value)}
+                        required
+                        className="border-[#4E1F00]"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="subject-name" className="text-sm font-medium text-[#4E1F00]">
+                        Subject Name
+                      </label>
+                      <Input
+                        id="subject-name"
+                        placeholder="E.g., Introduction to Computer Science"
+                        value={subjectName}
+                        onChange={(e) => setSubjectName(e.target.value)}
+                        required
+                        className="border-[#4E1F00]"
+                      />
+                    </div>
                   </motion.div>
                   
                   <motion.div variants={itemVariants} className="space-y-2">
@@ -175,85 +192,87 @@ const UploadPage = () => {
                     />
                   </motion.div>
                   
-                  <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="difficulty" className="text-sm font-medium text-[#4E1F00]">
-                      Difficulty
-                    </label>
-                    <Select 
-                      value={difficulty} 
-                      onValueChange={setDifficulty}
-                    >
-                      <SelectTrigger className="border-[#4E1F00] text-[#4E1F00]" id="difficulty">
-                        <SelectValue placeholder="Select difficulty level" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="easy">Easy</SelectItem>
-                        <SelectItem value="medium">Medium</SelectItem>
-                        <SelectItem value="hard">Hard</SelectItem>
-                      </SelectContent>
-                    </Select>
+                  <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                      <label htmlFor="difficulty" className="text-sm font-medium text-[#4E1F00]">
+                        Difficulty
+                      </label>
+                      <Select 
+                        value={difficulty} 
+                        onValueChange={setDifficulty}
+                      >
+                        <SelectTrigger className="border-[#4E1F00] text-[#4E1F00]">
+                          <SelectValue placeholder="Select difficulty level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="easy">Easy</SelectItem>
+                          <SelectItem value="medium">Medium</SelectItem>
+                          <SelectItem value="hard">Hard</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="taxonomy-rank" className="text-sm font-medium text-[#4E1F00]">
+                        Bloom's Taxonomy Rank
+                      </label>
+                      <Select 
+                        value={taxonomyRank} 
+                        onValueChange={setTaxonomyRank}
+                      >
+                        <SelectTrigger className="border-[#4E1F00] text-[#4E1F00]">
+                          <SelectValue placeholder="Select taxonomy rank" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="CO1">CO1</SelectItem>
+                          <SelectItem value="CO2">CO2</SelectItem>
+                          <SelectItem value="CO3">CO3</SelectItem>
+                          <SelectItem value="CO4">CO4</SelectItem>
+                          <SelectItem value="CO5">CO5</SelectItem>
+                          <SelectItem value="CO6">CO6</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </motion.div>
                   
-                  <motion.div variants={itemVariants} className="space-y-2">
-                    <label htmlFor="taxonomy-rank" className="text-sm font-medium text-[#4E1F00]">
-                      Bloom's Taxonomy Rank
-                    </label>
-                    <Select 
-                      value={taxonomyRank} 
-                      onValueChange={setTaxonomyRank}
-                    >
-                      <SelectTrigger className="border-[#4E1F00] text-[#4E1F00]" id="taxonomy-rank">
-                        <SelectValue placeholder="Select taxonomy rank" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="CO1">CO1</SelectItem>
-                        <SelectItem value="CO2">CO2</SelectItem>
-                        <SelectItem value="CO3">CO3</SelectItem>
-                        <SelectItem value="CO4">CO4</SelectItem>
-                        <SelectItem value="CO5">CO5</SelectItem>
-                        <SelectItem value="CO6">CO6</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </motion.div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <motion.div variants={itemVariants} className="space-y-2">
-                      <label htmlFor="max-time" className="text-sm font-medium text-[#4E1F00]">
-                        Maximum Time (minutes)
+                  <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="space-y-2">
+                      <label htmlFor="max-time" className="text-sm font-medium text-[#4E1F00] flex items-center gap-1">
+                        <Clock className="h-4 w-4" /> Maximum Time (minutes)
                       </label>
                       <Input
                         id="max-time"
                         type="number"
-                        min="1"
-                        placeholder="E.g., 30"
+                        placeholder="E.g., 15"
                         value={maxTime}
                         onChange={(e) => setMaxTime(e.target.value)}
                         required
+                        min="1"
                         className="border-[#4E1F00]"
                       />
-                    </motion.div>
+                    </div>
                     
-                    <motion.div variants={itemVariants} className="space-y-2">
-                      <label htmlFor="marks" className="text-sm font-medium text-[#4E1F00]">
-                        Marks
+                    <div className="space-y-2">
+                      <label htmlFor="marks" className="text-sm font-medium text-[#4E1F00] flex items-center gap-1">
+                        <Award className="h-4 w-4" /> Marks
                       </label>
                       <Input
                         id="marks"
                         type="number"
-                        min="1"
                         placeholder="E.g., 10"
                         value={marks}
                         onChange={(e) => setMarks(e.target.value)}
                         required
+                        min="1"
                         className="border-[#4E1F00]"
                       />
-                    </motion.div>
-                  </div>
+                    </div>
+                  </motion.div>
                   
                   <motion.div variants={itemVariants}>
                     <Button 
                       type="submit"
-                      className="bg-[#4E1F00] hover:bg-[#3a1700] text-[#F8F4E1] w-full" 
+                      className="bg-[#4E1F00] hover:bg-[#3a1700] text-[#F8F4E1] w-full transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]" 
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Uploading..." : "Upload Question"}
